@@ -5,23 +5,30 @@ const tableBody = document.getElementById('tableBody');
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const newEntry = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // --- UPDATED VALIDATION ---
+    // This checks if the email ends exactly with @gmail.com
+    if (!email.toLowerCase().endsWith('@gmail.com')) {
+        alert("Only @gmail.com email addresses are allowed.");
+        return; // Stops the function here
+    }
+
+    const newEntry = { name, email, message };
 
     const entries = JSON.parse(localStorage.getItem('myEntries')) || [];
     entries.push(newEntry);
     localStorage.setItem('myEntries', JSON.stringify(entries));
     
     this.reset();
-    renderTable(); // Redraw the table
+    renderTable();
 });
 
 // 2. Function to draw the table
 function renderTable() {
-    tableBody.innerHTML = ''; // Clear current table
+    tableBody.innerHTML = ''; 
     const entries = JSON.parse(localStorage.getItem('myEntries')) || [];
 
     entries.forEach((entry, index) => {
@@ -38,10 +45,9 @@ function renderTable() {
 // 3. Function to delete an entry
 function deleteEntry(index) {
     let entries = JSON.parse(localStorage.getItem('myEntries')) || [];
-    entries.splice(index, 1); // Remove the item at the clicked index
-    localStorage.setItem('myEntries', JSON.stringify(entries)); // Save back to storage
-    renderTable(); // Redraw the table
+    entries.splice(index, 1);
+    localStorage.setItem('myEntries', JSON.stringify(entries));
+    renderTable();
 }
 
-// 4. Initial load
 window.onload = renderTable;
