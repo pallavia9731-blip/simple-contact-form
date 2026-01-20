@@ -1,0 +1,17 @@
+/* ... keep your previous CSS or use this updated version ... */
+body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+.container { max-width: 700px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+input, textarea { width: 100%; margin-bottom: 10px; padding: 8px; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+
+/* The Delete Button Style */
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.delete-btn:hover { background-color: #cc0000; }
